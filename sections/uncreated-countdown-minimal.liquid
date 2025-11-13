@@ -1,0 +1,174 @@
+{{ 'uncreated-minimal.css' | asset_url | stylesheet_tag }}
+
+{% style %}
+  #uncreated-countdown-{{ section.id }} {
+    background-color: {{ section.settings.background_color }};
+    color: {{ section.settings.text_color }};
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+  }
+{% endstyle %}
+
+<section
+  id="uncreated-countdown-{{ section.id }}"
+  class="uncreated-countdown"
+  data-section-id="{{ section.id }}"
+  data-section-type="uncreated-countdown"
+>
+  <div class="countdown__container page-width">
+    {%- if section.settings.heading != blank -%}
+      <h2 class="countdown__heading">
+        {{ section.settings.heading }}
+      </h2>
+    {%- endif -%}
+
+    {%- if section.settings.drop_date != blank -%}
+      <div
+        class="countdown__timer"
+        data-drop-date="{{ section.settings.drop_date }}"
+      >
+        <div class="countdown__unit">
+          <span class="countdown__value" data-days>00</span>
+          <span class="countdown__label">Days</span>
+        </div>
+        <div class="countdown__unit">
+          <span class="countdown__value" data-hours>00</span>
+          <span class="countdown__label">Hours</span>
+        </div>
+        <div class="countdown__unit">
+          <span class="countdown__value" data-minutes>00</span>
+          <span class="countdown__label">Minutes</span>
+        </div>
+        <div class="countdown__unit">
+          <span class="countdown__value" data-seconds>00</span>
+          <span class="countdown__label">Seconds</span>
+        </div>
+      </div>
+    {%- else -%}
+      <p class="countdown__placeholder">Please set a drop date in the theme settings.</p>
+    {%- endif -%}
+
+    {%- if section.settings.show_notify -%}
+      <div class="countdown__notify">
+        <p class="countdown__notify-text">{{ section.settings.notify_text }}</p>
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+
+<script>
+  (function() {
+    const countdownSection = document.querySelector('[data-section-type="uncreated-countdown"]');
+    if (!countdownSection) return;
+
+    const timerElement = countdownSection.querySelector('.countdown__timer');
+    if (!timerElement) return;
+
+    const dropDate = timerElement.dataset.dropDate;
+    if (!dropDate) return;
+
+    const targetDate = new Date(dropDate).getTime();
+
+    const daysEl = timerElement.querySelector('[data-days]');
+    const hoursEl = timerElement.querySelector('[data-hours]');
+    const minutesEl = timerElement.querySelector('[data-minutes]');
+    const secondsEl = timerElement.querySelector('[data-seconds]');
+
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const distance = targetDate - now;
+
+      if (distance < 0) {
+        daysEl.textContent = '00';
+        hoursEl.textContent = '00';
+        minutesEl.textContent = '00';
+        secondsEl.textContent = '00';
+        return;
+      }
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      daysEl.textContent = String(days).padStart(2, '0');
+      hoursEl.textContent = String(hours).padStart(2, '0');
+      minutesEl.textContent = String(minutes).padStart(2, '0');
+      secondsEl.textContent = String(seconds).padStart(2, '0');
+    }
+
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Countdown Timer",
+  "class": "section-uncreated-countdown",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Next Drop"
+    },
+    {
+      "type": "text",
+      "id": "drop_date",
+      "label": "Drop Date & Time",
+      "info": "Format: YYYY-MM-DD HH:MM (e.g., 2025-12-25 18:00)",
+      "default": "2025-12-31 18:00"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_notify",
+      "label": "Show Notify Text",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "notify_text",
+      "label": "Notify Text",
+      "default": "Sign up to be notified when the drop goes live"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color",
+      "default": "#f5f5f0"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#0a0a0a"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 200,
+      "step": 10,
+      "unit": "px",
+      "label": "Top Padding",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 200,
+      "step": 10,
+      "unit": "px",
+      "label": "Bottom Padding",
+      "default": 80
+    }
+  ],
+  "presets": [
+    {
+      "name": "Countdown Timer"
+    }
+  ]
+}
+{% endschema %}
