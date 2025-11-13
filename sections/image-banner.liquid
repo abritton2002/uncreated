@@ -115,6 +115,16 @@
     <div class="banner__box content-container content-container--full-width-mobile color-{{ section.settings.color_scheme }} gradient">
       {%- for block in section.blocks -%}
         {%- case block.type -%}
+          {%- when 'logo' -%}
+            {%- if block.settings.logo != blank -%}
+              <div class="banner__logo" {{ block.shopify_attributes }}>
+                {{
+                  block.settings.logo
+                  | image_url: width: block.settings.logo_width
+                  | image_tag: loading: 'eager', style: 'width: ' | append: block.settings.logo_width | append: 'px; height: auto;'
+                }}
+              </div>
+            {%- endif -%}
           {%- when 'heading' -%}
             <h2
               class="banner__heading inline-richtext {{ block.settings.heading_size }}"
@@ -358,6 +368,28 @@
     }
   ],
   "blocks": [
+    {
+      "type": "logo",
+      "name": "Logo",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "logo",
+          "label": "Logo Image"
+        },
+        {
+          "type": "range",
+          "id": "logo_width",
+          "min": 50,
+          "max": 500,
+          "step": 10,
+          "unit": "px",
+          "label": "Logo Width",
+          "default": 200
+        }
+      ]
+    },
     {
       "type": "heading",
       "name": "t:sections.image-banner.blocks.heading.name",

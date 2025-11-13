@@ -75,6 +75,19 @@
   box-shadow: none !important;
 }
 
+/* Banner logo styling */
+.banner__logo {
+  margin: 0 auto 2rem;
+  text-align: center;
+}
+
+.banner__logo img {
+  display: block;
+  margin: 0 auto;
+  max-width: 100%;
+  height: auto;
+}
+
 /* ==================================
    HERO SECTION
    ================================== */
