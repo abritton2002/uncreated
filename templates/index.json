@@ -3,14 +3,14 @@
     "uncreated_hero_minimal": {
       "type": "uncreated-hero-minimal",
       "settings": {
-        "logo_width": 200,
+        "logo_width": 300,
         "title": "UNCREATED",
         "title_size": 120,
         "title_spacing": 0.1,
         "subtitle": "Created by the Uncreated One",
-        "show_cta": false,
+        "show_cta": true,
         "cta_text": "ENTER DROP",
-        "hero_height": 30,
+        "hero_height": 40,
         "background_color": "#f5f5f0",
         "text_color": "#0a0a0a",
         "show_background_image": false,
