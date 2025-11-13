@@ -39,6 +39,13 @@
             "text_style": "body"
           }
         },
+        "logo_zYe8JD": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/Uncreated_Curve_Logo_Black_-_1_1.png",
+            "logo_width": 350
+          }
+        },
         "buttons_t9RT3R": {
           "type": "buttons",
           "settings": {
@@ -54,6 +61,7 @@
       "block_order": [
         "heading_ipUXKQ",
         "text_R4DXyK",
+        "logo_zYe8JD",
         "buttons_t9RT3R"
       ],
       "name": "t:sections.image-banner.presets.name",
