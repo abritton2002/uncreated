@@ -22,23 +22,64 @@
         "padding_bottom": 10
       }
     },
-    "uncreated_hero_minimal": {
-      "type": "uncreated-hero-minimal",
+    "slideshow_p8i4Y9": {
+      "type": "slideshow",
+      "blocks": {
+        "slide_ag9Gnc": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/P1010353.jpg",
+            "heading": "Image slide",
+            "heading_size": "h1",
+            "subheading": "Tell your brand's story through images",
+            "button_label": "Button label",
+            "link": "",
+            "button_style_secondary": false,
+            "box_align": "middle-center",
+            "show_text_box": true,
+            "text_alignment": "center",
+            "image_overlay_opacity": 0,
+            "color_scheme": "",
+            "text_alignment_mobile": "center"
+          }
+        },
+        "slide_xw4GAi": {
+          "type": "slide",
+          "settings": {
+            "heading": "Image slide",
+            "heading_size": "h1",
+            "subheading": "Tell your brand's story through images",
+            "button_label": "Button label",
+            "link": "",
+            "button_style_secondary": false,
+            "box_align": "middle-center",
+            "show_text_box": true,
+            "text_alignment": "center",
+            "image_overlay_opacity": 0,
+            "color_scheme": "",
+            "text_alignment_mobile": "center"
+          }
+        }
+      },
+      "block_order": [
+        "slide_ag9Gnc",
+        "slide_xw4GAi"
+      ],
+      "name": "t:sections.slideshow.presets.name",
       "settings": {
-        "background_image": "shopify://shop_images/P1010802_1_2.jpg",
-        "hero_height": 80,
-        "background_color": "#f5f5f0",
-        "text_color": "#121212",
-        "show_overlay_text": true,
-        "subtitle": "\"created by the uncreated one\"",
-        "show_cta": true,
-        "cta_text": "ENTER DROP",
-        "show_scroll_indicator": true
+        "layout": "full_bleed",
+        "slide_height": "medium",
+        "slider_visual": "counter",
+        "auto_rotate": false,
+        "change_slides_speed": 5,
+        "image_behavior": "none",
+        "show_text_below": true,
+        "accessibility_info": "Slideshow about our brand"
       }
     }
   },
   "order": [
     "uncreated_countdown_minimal",
-    "uncreated_hero_minimal"
+    "slideshow_p8i4Y9"
   ]
 }
