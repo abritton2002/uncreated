@@ -154,8 +154,7 @@
   letter-spacing: 0.4em;
   text-transform: uppercase;
   margin: 0 0 3rem;
-  color: var(--color-divine);
-  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.8);
+  color: #0a0a0a;
   animation: fadeInUp 1s ease-out 0.6s both;
 }
 
@@ -166,19 +165,19 @@
   letter-spacing: 0.4em;
   text-transform: uppercase;
   padding: 1.6rem 3.2rem;
-  background: rgba(245, 245, 240, 0.95);
-  border: 1px solid var(--color-divine);
-  color: var(--color-sacred);
+  background: #0a0a0a;
+  border: 1px solid #0a0a0a;
+  color: #f5f5f0;
   cursor: pointer;
   transition: var(--transition-smooth);
   animation: fadeInUp 1s ease-out 0.9s both;
   pointer-events: auto;
-  backdrop-filter: blur(10px);
 }
 
 .hero__overlay-cta:hover {
-  background: var(--color-sacred);
-  color: var(--color-divine);
+  background: #f5f5f0;
+  color: #0a0a0a;
+  border: 1px solid #0a0a0a;
   transform: translateY(-2px);
 }
 
