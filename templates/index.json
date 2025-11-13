@@ -18,79 +18,12 @@
         "notify_text": "Sign up to be notified when the drop goes live",
         "background_color": "#f5f5f0",
         "text_color": "#0a0a0a",
-        "padding_top": 10,
+        "padding_top": 20,
         "padding_bottom": 10
       }
     },
     "uncreated_hero_minimal": {
       "type": "uncreated-hero-minimal",
-      "blocks": {
-        "image_kW8DDg": {
-          "type": "image",
-          "settings": {
-            "image": "shopify://shop_images/P1010802_1.jpg"
-          }
-        },
-        "image_dL3ejW": {
-          "type": "image",
-          "settings": {
-            "image": "shopify://shop_images/P1010335.jpg"
-          }
-        },
-        "image_Gzwcyp": {
-          "type": "image",
-          "settings": {
-            "image": "shopify://shop_images/P1020154.jpg"
-          }
-        },
-        "image_VenNqN": {
-          "type": "image",
-          "settings": {
-            "image": "shopify://shop_images/P1010526.jpg"
-          }
-        },
-        "image_FtJw9d": {
-          "type": "image",
-          "settings": {
-            "image": "shopify://shop_images/back.jpg"
-          }
-        },
-        "image_dzMdBL": {
-          "type": "image",
-          "settings": {
-            "image": "shopify://shop_images/P1010511.jpg"
-          }
-        },
-        "image_YKLfqx": {
-          "type": "image",
-          "settings": {
-            "image": "shopify://shop_images/P1010353.jpg"
-          }
-        },
-        "image_NkDf7k": {
-          "type": "image",
-          "settings": {
-            "image": "shopify://shop_images/P1010460.jpg"
-          }
-        },
-        "image_9TBCdp": {
-          "type": "image",
-          "settings": {
-            "image": "shopify://shop_images/P1010767.jpg"
-          }
-        }
-      },
-      "block_order": [
-        "image_kW8DDg",
-        "image_dL3ejW",
-        "image_Gzwcyp",
-        "image_VenNqN",
-        "image_FtJw9d",
-        "image_dzMdBL",
-        "image_YKLfqx",
-        "image_NkDf7k",
-        "image_9TBCdp"
-      ],
       "settings": {
         "hero_height": 80,
         "background_color": "#f5f5f0",
