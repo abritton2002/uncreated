@@ -1,1 +1,69 @@
-{"name":"t:sections.header.name","type":"header","sections":{"header":{"type":"header","settings":{"logo_position":"middle-center","menu":"main-menu","menu_type_desktop":"mega","sticky_header_type":"on-scroll-up","show_line_separator":false,"color_scheme":"scheme-19647b9d-2ad0-4d1f-9dca-6daa650be7ff","menu_color_scheme":"scheme-1eba3db7-a9b5-41bf-bf2e-e15ce98745b9","enable_country_selector":true,"enable_language_selector":true,"mobile_logo_position":"center","margin_bottom":0,"padding_top":0,"padding_bottom":0}},"0f10f80f-aa1c-47d6-9769-3eccfd82ece4":{"type":"announcement-bar","blocks":{"51aa09ef-3e47-426f-84fb-63e88f8e1daa":{"type":"announcement","settings":{"text":"THANK YOU FOR ALL THE SUPPORT¡","link":""}},"dad0b6d5-5141-4060-8ca6-0685e64561cd":{"type":"announcement","settings":{"text":"ESSENTIALS COLLECTION BACK FOR LIMITED TIME¡¡","link":""}}},"block_order":["51aa09ef-3e47-426f-84fb-63e88f8e1daa","dad0b6d5-5141-4060-8ca6-0685e64561cd"],"settings":{"color_scheme":"accent-1","show_line_separator":true,"show_social":false,"auto_rotate":true,"change_slides_speed":3,"enable_country_selector":false,"enable_language_selector":false}}},"order":["header","0f10f80f-aa1c-47d6-9769-3eccfd82ece4"]}
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "name": "t:sections.header.name",
+  "type": "header",
+  "sections": {
+    "header": {
+      "type": "header",
+      "settings": {
+        "logo_position": "middle-center",
+        "menu": "main-menu",
+        "menu_type_desktop": "mega",
+        "sticky_header_type": "on-scroll-up",
+        "show_line_separator": false,
+        "color_scheme": "scheme-19647b9d-2ad0-4d1f-9dca-6daa650be7ff",
+        "menu_color_scheme": "scheme-1eba3db7-a9b5-41bf-bf2e-e15ce98745b9",
+        "enable_country_selector": true,
+        "enable_language_selector": true,
+        "mobile_logo_position": "center",
+        "margin_bottom": 36,
+        "padding_top": 36,
+        "padding_bottom": 0
+      }
+    },
+    "0f10f80f-aa1c-47d6-9769-3eccfd82ece4": {
+      "type": "announcement-bar",
+      "blocks": {
+        "51aa09ef-3e47-426f-84fb-63e88f8e1daa": {
+          "type": "announcement",
+          "settings": {
+            "text": "THANK YOU FOR ALL THE SUPPORT¡",
+            "link": ""
+          }
+        },
+        "dad0b6d5-5141-4060-8ca6-0685e64561cd": {
+          "type": "announcement",
+          "settings": {
+            "text": "ESSENTIALS COLLECTION BACK FOR LIMITED TIME¡¡",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "51aa09ef-3e47-426f-84fb-63e88f8e1daa",
+        "dad0b6d5-5141-4060-8ca6-0685e64561cd"
+      ],
+      "settings": {
+        "color_scheme": "accent-1",
+        "show_line_separator": true,
+        "show_social": false,
+        "auto_rotate": true,
+        "change_slides_speed": 3,
+        "enable_country_selector": false,
+        "enable_language_selector": false
+      }
+    }
+  },
+  "order": [
+    "header",
+    "0f10f80f-aa1c-47d6-9769-3eccfd82ece4"
+  ]
+}

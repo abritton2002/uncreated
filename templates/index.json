@@ -1,25 +1,36 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "uncreated_hero_minimal": {
       "type": "uncreated-hero-minimal",
       "settings": {
-        "logo_width": 300,
-        "title": "UNCREATED",
+        "logo": "shopify://shop_images/Uncreated_Curve_Logo_Black_-_1_1.png",
+        "logo_width": 500,
+        "title": "",
         "title_size": 120,
         "title_spacing": 0.1,
         "subtitle": "Created by the Uncreated One",
         "show_cta": true,
         "cta_text": "ENTER DROP",
-        "hero_height": 50,
+        "hero_height": 100,
         "background_color": "#f5f5f0",
         "text_color": "#0a0a0a",
         "show_background_image": false,
-        "show_scroll_indicator": false
+        "show_scroll_indicator": true
       }
     },
     "uncreated_product_minimal": {
       "type": "uncreated-product-minimal",
       "settings": {
+        "product": "",
         "button_text": "ADD TO BAG",
         "show_limited_badge": true,
         "limited_text": "Limited Edition",
