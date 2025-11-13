@@ -79,9 +79,9 @@
         "image_9TBCdp"
       ],
       "settings": {
-        "hero_height": 100,
+        "hero_height": 80,
         "background_color": "#f5f5f0",
-        "text_color": "#0a0a0a",
+        "text_color": "#121212",
         "show_overlay_text": true,
         "subtitle": "\"created by the uncreated one\"",
         "show_cta": true,
