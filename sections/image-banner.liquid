@@ -118,10 +118,11 @@
           {%- when 'logo' -%}
             {%- if block.settings.logo != blank -%}
               <div class="banner__logo" {{ block.shopify_attributes }}>
+                {%- assign logo_style = 'width: ' | append: block.settings.logo_width | append: 'px;' -%}
                 {{
                   block.settings.logo
                   | image_url: width: block.settings.logo_width
-                  | image_tag: loading: 'eager', style: 'width: ' | append: block.settings.logo_width | append: 'px; height: auto;'
+                  | image_tag: loading: 'eager', style: logo_style
                 }}
               </div>
             {%- endif -%}
