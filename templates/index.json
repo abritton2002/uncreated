@@ -9,6 +9,19 @@
  */
 {
   "sections": {
+    "uncreated_countdown_minimal": {
+      "type": "uncreated-countdown-minimal",
+      "settings": {
+        "heading": "Next Drop",
+        "drop_date": "2025-12-31 18:00",
+        "show_notify": false,
+        "notify_text": "Sign up to be notified when the drop goes live",
+        "background_color": "#f5f5f0",
+        "text_color": "#0a0a0a",
+        "padding_top": 10,
+        "padding_bottom": 10
+      }
+    },
     "uncreated_hero_minimal": {
       "type": "uncreated-hero-minimal",
       "blocks": {
@@ -88,23 +101,10 @@
         "cta_text": "ENTER DROP",
         "show_scroll_indicator": true
       }
-    },
-    "uncreated_countdown_minimal": {
-      "type": "uncreated-countdown-minimal",
-      "settings": {
-        "heading": "Next Drop",
-        "drop_date": "2025-12-31 18:00",
-        "show_notify": false,
-        "notify_text": "Sign up to be notified when the drop goes live",
-        "background_color": "#f5f5f0",
-        "text_color": "#0a0a0a",
-        "padding_top": 80,
-        "padding_bottom": 80
-      }
     }
   },
   "order": [
-    "uncreated_hero_minimal",
-    "uncreated_countdown_minimal"
+    "uncreated_countdown_minimal",
+    "uncreated_hero_minimal"
   ]
 }
