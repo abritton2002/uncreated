@@ -21,37 +21,48 @@
    MINIMAL HEADER/FOOTER OVERRIDES
    ================================== */
 
-/* Hide announcement bar on minimal drop homepage */
+/* OPTION 1: Completely hide header on homepage (ultra-minimal) */
+.template-index .shopify-section-group-header-group {
+  display: none;
+}
+
+/* OPTION 2: If you want a minimal header instead, comment out the above and uncomment below */
+/*
 .template-index .shopify-section-group-header-group .shopify-section[id*="announcement"] {
   display: none;
 }
 
-/* Simplify header on homepage - hide menu, keep logo + cart */
+.template-index .header {
+  padding: 2rem 0;
+  background: transparent;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+}
+
 .template-index .header__inline-menu,
 .template-index .header__search,
 .template-index .header__icons .localization-form,
-.template-index .header__icon--account {
+.template-index .header__icon--account,
+.template-index .menu-drawer {
   display: none !important;
 }
 
-/* Center header logo on homepage */
-.template-index .header {
-  justify-content: center;
+.template-index .header__heading-logo {
+  max-width: 120px;
 }
 
-.template-index .header__heading {
-  margin: 0 auto;
-}
-
-/* Keep cart icon visible but minimal */
 .template-index .header__icon--cart {
-  opacity: 0.5;
+  opacity: 0.3;
   transition: var(--transition-smooth);
 }
 
 .template-index .header__icon--cart:hover {
   opacity: 1;
 }
+*/
 
 /* Hide default footer on homepage (use our custom minimal footer instead) */
 .template-index .shopify-section-group-footer-group {
@@ -102,6 +113,20 @@
   position: relative;
   z-index: 10;
   animation: fadeInUp 1.5s ease-out;
+}
+
+.hero__logo {
+  max-width: 100%;
+  margin: 0 0 2.4rem;
+  animation: fadeInUp 1s ease-out 0.3s both;
+}
+
+.hero__logo img {
+  display: block;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  margin: 0 auto;
 }
 
 .hero__title {

@@ -3,6 +3,7 @@
     "uncreated_hero_minimal": {
       "type": "uncreated-hero-minimal",
       "settings": {
+        "logo_width": 400,
         "title": "UNCREATED",
         "title_size": 120,
         "title_spacing": 0.1,

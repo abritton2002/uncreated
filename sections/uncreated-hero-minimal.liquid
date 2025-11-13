@@ -37,7 +37,15 @@
     {%- endif -%}
 
     <div class="hero__text-container">
-      {%- if section.settings.title != blank -%}
+      {%- if section.settings.logo != blank -%}
+        <div class="hero__logo">
+          {{
+            section.settings.logo
+            | image_url: width: section.settings.logo_width
+            | image_tag: loading: 'eager', alt: shop.name
+          }}
+        </div>
+      {%- elsif section.settings.title != blank -%}
         <h1 class="hero__title">
           {{ section.settings.title }}
         </h1>
@@ -73,10 +81,27 @@
   "class": "section-uncreated-hero",
   "settings": [
     {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo Image",
+      "info": "Upload your logo (if empty, will show brand name text)"
+    },
+    {
+      "type": "range",
+      "id": "logo_width",
+      "min": 200,
+      "max": 800,
+      "step": 50,
+      "unit": "px",
+      "label": "Logo Width",
+      "default": 400
+    },
+    {
       "type": "text",
       "id": "title",
-      "label": "Brand Name",
-      "default": "UNCREATED"
+      "label": "Brand Name (fallback)",
+      "default": "UNCREATED",
+      "info": "Only shown if no logo is uploaded"
     },
     {
       "type": "range",
