@@ -3,7 +3,9 @@
 {% style %}
   #uncreated-hero-{{ section.id }} {
     min-height: {{ section.settings.hero_height }}vh;
-    background-color: {{ section.settings.background_color }};
+    {%- if section.settings.background_image == blank -%}
+      background-color: {{ section.settings.background_color }};
+    {%- endif -%}
     color: {{ section.settings.text_color }};
   }
 
