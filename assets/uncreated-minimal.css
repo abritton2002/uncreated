@@ -69,6 +69,15 @@
   display: none;
 }
 
+/* Change mobile menu drawer color to match site */
+.menu-drawer {
+  background-color: #f5f5f0 !important;
+}
+
+.menu-drawer__inner {
+  background-color: #f5f5f0 !important;
+}
+
 /* Make image banner text box transparent */
 .banner__box {
   background: transparent !important;
