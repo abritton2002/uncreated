@@ -1,0 +1,165 @@
+{{ 'uncreated-minimal.css' | asset_url | stylesheet_tag }}
+
+{% style %}
+  #uncreated-hero-{{ section.id }} {
+    min-height: {{ section.settings.hero_height }}vh;
+    background-color: {{ section.settings.background_color }};
+    color: {{ section.settings.text_color }};
+  }
+
+  #uncreated-hero-{{ section.id }} .hero__title {
+    font-size: {{ section.settings.title_size }}px;
+    letter-spacing: {{ section.settings.title_spacing }}em;
+  }
+
+  @media screen and (max-width: 749px) {
+    #uncreated-hero-{{ section.id }} .hero__title {
+      font-size: calc({{ section.settings.title_size }}px * 0.5);
+    }
+  }
+{% endstyle %}
+
+<section
+  id="uncreated-hero-{{ section.id }}"
+  class="uncreated-hero"
+  data-section-id="{{ section.id }}"
+  data-section-type="uncreated-hero"
+>
+  <div class="hero__content">
+    {%- if section.settings.show_background_image and section.settings.background_image != blank -%}
+      <div class="hero__background">
+        {{
+          section.settings.background_image
+          | image_url: width: 2000
+          | image_tag: loading: 'eager', class: 'hero__bg-image'
+        }}
+      </div>
+    {%- endif -%}
+
+    <div class="hero__text-container">
+      {%- if section.settings.title != blank -%}
+        <h1 class="hero__title">
+          {{ section.settings.title }}
+        </h1>
+      {%- endif -%}
+
+      {%- if section.settings.subtitle != blank -%}
+        <p class="hero__subtitle">
+          {{ section.settings.subtitle }}
+        </p>
+      {%- endif -%}
+
+      {%- if section.settings.show_cta -%}
+        <button
+          class="hero__cta"
+          onclick="document.querySelector('#uncreated-product-section').scrollIntoView({ behavior: 'smooth' })"
+        >
+          {{ section.settings.cta_text }}
+        </button>
+      {%- endif -%}
+    </div>
+
+    {%- if section.settings.show_scroll_indicator -%}
+      <div class="hero__scroll-indicator">
+        <div class="scroll-line"></div>
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Uncreated Hero (Minimal)",
+  "class": "section-uncreated-hero",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Brand Name",
+      "default": "UNCREATED"
+    },
+    {
+      "type": "range",
+      "id": "title_size",
+      "min": 60,
+      "max": 200,
+      "step": 10,
+      "unit": "px",
+      "label": "Title Size",
+      "default": 120
+    },
+    {
+      "type": "range",
+      "id": "title_spacing",
+      "min": 0,
+      "max": 0.5,
+      "step": 0.05,
+      "label": "Title Letter Spacing",
+      "default": 0.1
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "Created by the Uncreated One"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_cta",
+      "label": "Show CTA Button",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "cta_text",
+      "label": "CTA Button Text",
+      "default": "ENTER DROP"
+    },
+    {
+      "type": "range",
+      "id": "hero_height",
+      "min": 80,
+      "max": 100,
+      "step": 5,
+      "unit": "vh",
+      "label": "Hero Height",
+      "default": 100
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color",
+      "default": "#f5f5f0"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#0a0a0a"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_background_image",
+      "label": "Show Background Image",
+      "default": false
+    },
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "Background Image",
+      "info": "Optional subtle background image"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_scroll_indicator",
+      "label": "Show Scroll Indicator",
+      "default": true
+    }
+  ],
+  "presets": [
+    {
+      "name": "Uncreated Hero"
+    }
+  ]
+}
+{% endschema %}

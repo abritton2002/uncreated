@@ -1,0 +1,289 @@
+{{ 'uncreated-minimal.css' | asset_url | stylesheet_tag }}
+
+{%- liquid
+  assign product = section.settings.product
+  assign current_variant = product.selected_or_first_available_variant
+-%}
+
+{% style %}
+  #uncreated-product-{{ section.id }} {
+    background-color: {{ section.settings.background_color }};
+    color: {{ section.settings.text_color }};
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+  }
+{% endstyle %}
+
+<section
+  id="uncreated-product-section"
+  class="uncreated-product"
+  data-section-id="{{ section.id }}"
+  data-section-type="uncreated-product"
+>
+  {%- if product != blank -%}
+    <div class="product__container page-width">
+      <div class="product__grid">
+        {%- comment -%} Product Image {%- endcomment -%}
+        <div class="product__media-wrapper">
+          {%- if product.featured_media -%}
+            <div class="product__media">
+              {{
+                product.featured_media
+                | image_url: width: 1200
+                | image_tag: loading: 'lazy', class: 'product__image', alt: product.featured_media.alt | escape
+              }}
+            </div>
+          {%- else -%}
+            <div class="product__media-placeholder">
+              <div class="placeholder-number">001</div>
+              <p class="placeholder-text">PRODUCT IMAGE</p>
+            </div>
+          {%- endif -%}
+        </div>
+
+        {%- comment -%} Product Details {%- endcomment -%}
+        <div class="product__details-wrapper">
+          <div class="product__details">
+            {%- comment -%} Product Title {%- endcomment -%}
+            <div class="product__header">
+              <h2 class="product__title">{{ product.title }}</h2>
+              {%- if section.settings.show_limited_badge -%}
+                <p class="product__badge">{{ section.settings.limited_text }}</p>
+              {%- endif -%}
+            </div>
+
+            {%- comment -%} Price {%- endcomment -%}
+            <div class="product__price-wrapper">
+              {% render 'price', product: product, use_variant: true, show_badges: false %}
+            </div>
+
+            {%- comment -%} Product Form {%- endcomment -%}
+            <product-form class="product-form">
+              {%- form 'product', product, id: 'product-form-' | append: section.id -%}
+                <input
+                  type="hidden"
+                  name="id"
+                  value="{{ current_variant.id }}"
+                  class="product-variant-id"
+                  {% if current_variant.available == false %}
+                    disabled
+                  {% endif %}
+                >
+
+                {%- comment -%} Variant Picker {%- endcomment -%}
+                {%- unless product.has_only_default_variant -%}
+                  <div class="product__variants">
+                    {%- for option in product.options_with_values -%}
+                      <div class="product__option">
+                        <label class="product__option-label">
+                          {{ option.name }}
+                        </label>
+                        <div class="product__option-values">
+                          {%- for value in option.values -%}
+                            <input
+                              type="radio"
+                              id="{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}"
+                              name="{{ option.name }}"
+                              value="{{ value | escape }}"
+                              form="product-form-{{ section.id }}"
+                              {% if option.selected_value == value %}
+                                checked
+                              {% endif %}
+                              class="product__option-input"
+                            >
+                            <label
+                              for="{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}"
+                              class="product__option-button"
+                            >
+                              {{ value }}
+                            </label>
+                          {%- endfor -%}
+                        </div>
+                      </div>
+                    {%- endfor -%}
+                  </div>
+                {%- endunless -%}
+
+                {%- comment -%} Add to Cart Button {%- endcomment -%}
+                <div class="product__submit">
+                  <button
+                    type="submit"
+                    name="add"
+                    class="product__add-button"
+                    {% if current_variant.available == false %}
+                      disabled
+                    {% endif %}
+                  >
+                    {%- if current_variant.available -%}
+                      {{ section.settings.button_text }}
+                    {%- else -%}
+                      {{ 'products.product.sold_out' | t }}
+                    {%- endif -%}
+                  </button>
+                </div>
+              {%- endform -%}
+            </product-form>
+
+            {%- comment -%} Product Description {%- endcomment -%}
+            {%- if section.settings.show_description and product.description != blank -%}
+              <div class="product__description">
+                {{ product.description }}
+              </div>
+            {%- endif -%}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      class ProductForm extends HTMLElement {
+        constructor() {
+          super();
+          this.form = this.querySelector('form');
+          this.form.addEventListener('submit', this.onSubmitHandler.bind(this));
+          this.form.querySelectorAll('input[type="radio"]').forEach((input) => {
+            input.addEventListener('change', this.onVariantChange.bind(this));
+          });
+        }
+
+        onSubmitHandler(evt) {
+          evt.preventDefault();
+          const submitButton = this.querySelector('button[type="submit"]');
+          submitButton.setAttribute('disabled', true);
+          submitButton.classList.add('loading');
+
+          const formData = new FormData(this.form);
+
+          fetch(window.Shopify.routes.root + 'cart/add.js', {
+            method: 'POST',
+            body: formData
+          })
+          .then(response => response.json())
+          .then(data => {
+            // Redirect to cart or show notification
+            window.location.href = window.Shopify.routes.root + 'cart';
+          })
+          .catch((error) => {
+            console.error('Error:', error);
+            submitButton.removeAttribute('disabled');
+            submitButton.classList.remove('loading');
+          });
+        }
+
+        onVariantChange() {
+          this.updateOptions();
+          this.updateMasterId();
+          this.updateVariantInput();
+        }
+
+        updateOptions() {
+          this.options = Array.from(this.querySelectorAll('input[type="radio"]:checked'), (input) => input.value);
+        }
+
+        updateMasterId() {
+          this.currentVariant = this.getVariantData().find((variant) => {
+            return !variant.options.map((option, index) => {
+              return this.options[index] === option;
+            }).includes(false);
+          });
+        }
+
+        updateVariantInput() {
+          const input = this.form.querySelector('.product-variant-id');
+          input.value = this.currentVariant.id;
+          input.dispatchEvent(new Event('change', { bubbles: true }));
+        }
+
+        getVariantData() {
+          this.variantData = this.variantData || JSON.parse(this.querySelector('[type="application/json"]').textContent);
+          return this.variantData;
+        }
+      }
+
+      customElements.define('product-form', ProductForm);
+    </script>
+
+    <script type="application/json">
+      {{ product.variants | json }}
+    </script>
+  {%- else -%}
+    <div class="product__placeholder page-width">
+      <p>Please select a product in the theme settings.</p>
+    </div>
+  {%- endif -%}
+</section>
+
+{% schema %}
+{
+  "name": "Uncreated Product (Minimal)",
+  "class": "section-uncreated-product",
+  "settings": [
+    {
+      "type": "product",
+      "id": "product",
+      "label": "Product"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Add to Cart Button Text",
+      "default": "ADD TO BAG"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_limited_badge",
+      "label": "Show Limited Edition Badge",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "limited_text",
+      "label": "Limited Badge Text",
+      "default": "Limited Edition"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_description",
+      "label": "Show Product Description",
+      "default": true
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color",
+      "default": "#f5f5f0"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#0a0a0a"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 200,
+      "step": 10,
+      "unit": "px",
+      "label": "Top Padding",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 200,
+      "step": 10,
+      "unit": "px",
+      "label": "Bottom Padding",
+      "default": 80
+    }
+  ],
+  "presets": [
+    {
+      "name": "Uncreated Product"
+    }
+  ]
+}
+{% endschema %}

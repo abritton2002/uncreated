@@ -1,0 +1,158 @@
+{{ 'uncreated-minimal.css' | asset_url | stylesheet_tag }}
+
+{% style %}
+  #uncreated-footer-{{ section.id }} {
+    background-color: {{ section.settings.background_color }};
+    color: {{ section.settings.text_color }};
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+  }
+{% endstyle %}
+
+<footer
+  id="uncreated-footer-{{ section.id }}"
+  class="uncreated-footer"
+  role="contentinfo"
+>
+  <div class="footer__content page-width">
+    {%- comment -%} Social Links {%- endcomment -%}
+    {%- if section.blocks.size > 0 -%}
+      <div class="footer__social">
+        {%- for block in section.blocks -%}
+          {%- case block.type -%}
+            {%- when 'social_link' -%}
+              {%- if block.settings.url != blank -%}
+                <a
+                  href="{{ block.settings.url }}"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="footer__social-link"
+                  {{ block.shopify_attributes }}
+                >
+                  {{ block.settings.label }}
+                </a>
+              {%- endif -%}
+          {%- endcase -%}
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+
+    {%- comment -%} Divider {%- endcomment -%}
+    {%- if section.settings.show_divider -%}
+      <div class="footer__divider"></div>
+    {%- endif -%}
+
+    {%- comment -%} Copyright {%- endcomment -%}
+    {%- if section.settings.show_copyright -%}
+      <p class="footer__copyright">
+        &copy; {{ 'now' | date: '%Y' }} {{ section.settings.copyright_text }}
+      </p>
+    {%- endif -%}
+
+    {%- comment -%} Tagline {%- endcomment -%}
+    {%- if section.settings.tagline != blank -%}
+      <p class="footer__tagline">
+        {{ section.settings.tagline }}
+      </p>
+    {%- endif -%}
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "Uncreated Footer (Minimal)",
+  "class": "section-uncreated-footer",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_copyright",
+      "label": "Show Copyright",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "copyright_text",
+      "label": "Copyright Text",
+      "default": "Uncreated"
+    },
+    {
+      "type": "text",
+      "id": "tagline",
+      "label": "Tagline",
+      "default": "Created by the Uncreated One",
+      "info": "Appears below copyright in italics"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_divider",
+      "label": "Show Divider Line",
+      "default": true
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color",
+      "default": "#f5f5f0"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#0a0a0a"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 40,
+      "max": 200,
+      "step": 10,
+      "unit": "px",
+      "label": "Top Padding",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 40,
+      "max": 200,
+      "step": 10,
+      "unit": "px",
+      "label": "Bottom Padding",
+      "default": 80
+    }
+  ],
+  "blocks": [
+    {
+      "type": "social_link",
+      "name": "Social Link",
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label",
+          "default": "@uncreated"
+        },
+        {
+          "type": "url",
+          "id": "url",
+          "label": "URL"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Uncreated Footer",
+      "blocks": [
+        {
+          "type": "social_link",
+          "settings": {
+            "label": "@uncreated",
+            "url": "https://instagram.com/uncreated.shop"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
