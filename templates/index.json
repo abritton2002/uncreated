@@ -22,64 +22,59 @@
         "padding_bottom": 10
       }
     },
-    "slideshow_p8i4Y9": {
-      "type": "slideshow",
+    "image_banner_gx9tLR": {
+      "type": "image-banner",
       "blocks": {
-        "slide_ag9Gnc": {
-          "type": "slide",
+        "heading_ipUXKQ": {
+          "type": "heading",
           "settings": {
-            "image": "shopify://shop_images/P1010353.jpg",
-            "heading": "Image slide",
-            "heading_size": "h1",
-            "subheading": "Tell your brand's story through images",
-            "button_label": "Button label",
-            "link": "",
-            "button_style_secondary": false,
-            "box_align": "middle-center",
-            "show_text_box": true,
-            "text_alignment": "center",
-            "image_overlay_opacity": 0,
-            "color_scheme": "",
-            "text_alignment_mobile": "center"
+            "heading": "\"created by the uncreated one\"",
+            "heading_size": "h2"
           }
         },
-        "slide_xw4GAi": {
-          "type": "slide",
+        "text_R4DXyK": {
+          "type": "text",
           "settings": {
-            "heading": "Image slide",
-            "heading_size": "h1",
-            "subheading": "Tell your brand's story through images",
-            "button_label": "Button label",
-            "link": "",
-            "button_style_secondary": false,
-            "box_align": "middle-center",
-            "show_text_box": true,
-            "text_alignment": "center",
-            "image_overlay_opacity": 0,
-            "color_scheme": "",
-            "text_alignment_mobile": "center"
+            "text": "",
+            "text_style": "body"
+          }
+        },
+        "buttons_t9RT3R": {
+          "type": "buttons",
+          "settings": {
+            "button_label_1": "MERCH",
+            "button_link_1": "https://uncreated.shop/collections/all",
+            "button_style_secondary_1": false,
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_style_secondary_2": false
           }
         }
       },
       "block_order": [
-        "slide_ag9Gnc",
-        "slide_xw4GAi"
+        "heading_ipUXKQ",
+        "text_R4DXyK",
+        "buttons_t9RT3R"
       ],
-      "name": "t:sections.slideshow.presets.name",
+      "name": "t:sections.image-banner.presets.name",
       "settings": {
-        "layout": "full_bleed",
-        "slide_height": "medium",
-        "slider_visual": "counter",
-        "auto_rotate": false,
-        "change_slides_speed": 5,
+        "image": "shopify://shop_images/P1010353.jpg",
+        "image_2": "shopify://shop_images/P1010802_1.jpg",
+        "image_overlay_opacity": 0,
+        "image_height": "medium",
+        "desktop_content_position": "top-center",
+        "show_text_box": true,
+        "desktop_content_alignment": "center",
+        "color_scheme": "background-2",
         "image_behavior": "none",
-        "show_text_below": true,
-        "accessibility_info": "Slideshow about our brand"
+        "mobile_content_alignment": "center",
+        "stack_images_on_mobile": true,
+        "show_text_below": true
       }
     }
   },
   "order": [
     "uncreated_countdown_minimal",
-    "slideshow_p8i4Y9"
+    "image_banner_gx9tLR"
   ]
 }
