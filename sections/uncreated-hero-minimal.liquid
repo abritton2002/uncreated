@@ -26,7 +26,7 @@
   data-section-type="uncreated-hero"
 >
   <div class="hero__content">
-    {%- if section.settings.show_background_image and section.settings.background_image != blank -%}
+    {%- if section.settings.background_image != blank -%}
       <div class="hero__background">
         {{
           section.settings.background_image
@@ -35,26 +35,6 @@
         }}
       </div>
     {%- endif -%}
-
-    <div class="hero__gallery-grid">
-      {%- for block in section.blocks -%}
-        {%- if block.type == 'image' -%}
-          <div class="hero__gallery-item" {{ block.shopify_attributes }}>
-            {%- if block.settings.image != blank -%}
-              {{
-                block.settings.image
-                | image_url: width: 800
-                | image_tag: loading: 'eager', class: 'hero__gallery-image', alt: block.settings.image.alt | escape
-              }}
-            {%- else -%}
-              <div class="hero__gallery-placeholder">
-                <span>IMAGE</span>
-              </div>
-            {%- endif -%}
-          </div>
-        {%- endif -%}
-      {%- endfor -%}
-    </div>
 
     {%- if section.settings.show_overlay_text -%}
       <div class="hero__overlay-text">
@@ -67,7 +47,7 @@
         {%- if section.settings.show_cta -%}
           <button
             class="hero__overlay-cta"
-            onclick="document.querySelector('#uncreated-product-section').scrollIntoView({ behavior: 'smooth' })"
+            onclick="document.querySelector('.uncreated-countdown').scrollIntoView({ behavior: 'smooth' })"
           >
             {{ section.settings.cta_text }}
           </button>
@@ -87,11 +67,11 @@
 {
   "name": "Uncreated Hero",
   "class": "section-uncreated-hero",
-  "max_blocks": 9,
   "settings": [
     {
-      "type": "paragraph",
-      "content": "Add exactly 9 images to fill the 3x3 grid (no gaps between images)"
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "Background Image"
     },
     {
       "type": "range",
@@ -120,7 +100,7 @@
       "id": "show_overlay_text",
       "label": "Show Overlay Text",
       "default": true,
-      "info": "Shows text centered over images"
+      "info": "Shows text centered over background image"
     },
     {
       "type": "text",
@@ -147,51 +127,9 @@
       "default": false
     }
   ],
-  "blocks": [
-    {
-      "type": "image",
-      "name": "Image",
-      "settings": [
-        {
-          "type": "image_picker",
-          "id": "image",
-          "label": "Image"
-        }
-      ]
-    }
-  ],
   "presets": [
     {
-      "name": "Uncreated Hero",
-      "blocks": [
-        {
-          "type": "image"
-        },
-        {
-          "type": "image"
-        },
-        {
-          "type": "image"
-        },
-        {
-          "type": "image"
-        },
-        {
-          "type": "image"
-        },
-        {
-          "type": "image"
-        },
-        {
-          "type": "image"
-        },
-        {
-          "type": "image"
-        },
-        {
-          "type": "image"
-        }
-      ]
+      "name": "Uncreated Hero"
     }
   ]
 }
