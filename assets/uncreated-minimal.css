@@ -90,9 +90,95 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  text-align: center;
-  padding: 8rem 2.4rem;
   z-index: 2;
+}
+
+/* Gallery Grid Layout */
+.hero__gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  gap: 1rem;
+  width: 100%;
+  height: 100%;
+  padding: 2rem;
+}
+
+.hero__gallery-item {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 1 / 1;
+}
+
+.hero__gallery-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.6s ease;
+}
+
+.hero__gallery-item:hover .hero__gallery-image {
+  transform: scale(1.05);
+}
+
+.hero__gallery-placeholder {
+  width: 100%;
+  height: 100%;
+  background: rgba(10, 10, 10, 0.05);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  letter-spacing: 0.2em;
+  opacity: 0.3;
+}
+
+/* Overlay Text (appears over grid) */
+.hero__overlay-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  text-align: center;
+  pointer-events: none;
+}
+
+.hero__overlay-subtitle {
+  font-family: var(--font-body);
+  font-size: 1.6rem;
+  font-weight: 400;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  margin: 0 0 3rem;
+  color: var(--color-divine);
+  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.8);
+  animation: fadeInUp 1s ease-out 0.6s both;
+}
+
+.hero__overlay-cta {
+  font-family: var(--font-body);
+  font-size: 1.2rem;
+  font-weight: 500;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  padding: 1.6rem 3.2rem;
+  background: rgba(245, 245, 240, 0.95);
+  border: 1px solid var(--color-divine);
+  color: var(--color-sacred);
+  cursor: pointer;
+  transition: var(--transition-smooth);
+  animation: fadeInUp 1s ease-out 0.9s both;
+  pointer-events: auto;
+  backdrop-filter: blur(10px);
+}
+
+.hero__overlay-cta:hover {
+  background: var(--color-sacred);
+  color: var(--color-divine);
+  transform: translateY(-2px);
 }
 
 .hero__background {
@@ -544,6 +630,24 @@
    ================================== */
 
 @media screen and (max-width: 749px) {
+  .hero__gallery-grid {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: auto;
+    gap: 0.5rem;
+    padding: 1rem;
+  }
+
+  .hero__overlay-subtitle {
+    font-size: 1rem;
+    letter-spacing: 0.3em;
+    margin-bottom: 2rem;
+  }
+
+  .hero__overlay-cta {
+    font-size: 1rem;
+    padding: 1.2rem 2.4rem;
+  }
+
   .hero__content {
     padding: 4rem 2rem;
   }
