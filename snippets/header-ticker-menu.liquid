@@ -1,0 +1,57 @@
+{% comment %}
+  Renders a scrolling ticker menu for the header (sports bar style).
+  This continuously scrolls menu items from right to left.
+
+  Usage:
+  {% render 'header-ticker-menu' %}
+{% endcomment %}
+
+<nav class="header__ticker-menu" role="navigation" aria-label="Main navigation">
+  <div class="header__ticker-container">
+    <div class="header__ticker-track">
+      {%- comment -%} First set of menu items {%- endcomment -%}
+      <div class="header__ticker-content">
+        {%- for link in section.settings.menu.links -%}
+          <a
+            href="{{ link.url }}"
+            class="header__ticker-item link link--text focus-inset{% if link.current %} header__ticker-item--active{% endif %}"
+            {% if link.current %}aria-current="page"{% endif %}
+          >
+            {{ link.title | escape }}
+          </a>
+          {%- unless forloop.last -%}
+            <span class="header__ticker-separator">•</span>
+          {%- endunless -%}
+        {%- endfor -%}
+      </div>
+      {%- comment -%} Duplicate set for seamless loop {%- endcomment -%}
+      <div class="header__ticker-content" aria-hidden="true">
+        {%- for link in section.settings.menu.links -%}
+          <a
+            href="{{ link.url }}"
+            class="header__ticker-item link link--text focus-inset{% if link.current %} header__ticker-item--active{% endif %}"
+          >
+            {{ link.title | escape }}
+          </a>
+          {%- unless forloop.last -%}
+            <span class="header__ticker-separator">•</span>
+          {%- endunless -%}
+        {%- endfor -%}
+      </div>
+      {%- comment -%} Third set for smoother loop {%- endcomment -%}
+      <div class="header__ticker-content" aria-hidden="true">
+        {%- for link in section.settings.menu.links -%}
+          <a
+            href="{{ link.url }}"
+            class="header__ticker-item link link--text focus-inset{% if link.current %} header__ticker-item--active{% endif %}"
+          >
+            {{ link.title | escape }}
+          </a>
+          {%- unless forloop.last -%}
+            <span class="header__ticker-separator">•</span>
+          {%- endunless -%}
+        {%- endfor -%}
+      </div>
+    </div>
+  </div>
+</nav>

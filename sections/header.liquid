@@ -85,11 +85,144 @@
       padding-top: 0.5rem;
     }
   }
+
+  /* Scrolling Ticker Menu Styles */
+  .header__ticker-menu {
+    grid-area: navigation;
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    height: 24px;
+    display: none;
+    align-items: center;
+    justify-self: stretch;
+  }
+
+  .header__ticker-container {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    mask-image: linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%);
+  }
+
+  .header__ticker-track {
+    display: inline-flex;
+    white-space: nowrap;
+    animation: ticker-scroll 40s linear infinite;
+    will-change: transform;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .header__ticker-track {
+      animation: none;
+    }
+    .header__ticker-container {
+      mask-image: none;
+      -webkit-mask-image: none;
+    }
+    .header__ticker-track {
+      justify-content: center;
+    }
+  }
+
+  .header__ticker-content {
+    display: inline-flex;
+    align-items: center;
+    flex-shrink: 0;
+    gap: 1rem;
+    padding: 0 2rem;
+  }
+
+  .header__ticker-item {
+    display: inline-block;
+    padding: 0 0.5rem;
+    font-size: 0.8125rem;
+    text-decoration: none;
+    color: rgba(var(--color-foreground), 0.75);
+    transition: color 0.2s ease;
+    white-space: nowrap;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .header__ticker-item:hover {
+    color: rgb(var(--color-foreground));
+  }
+
+  .header__ticker-item--active {
+    color: rgb(var(--color-foreground));
+    font-weight: 700;
+  }
+
+  .header__ticker-separator {
+    color: rgba(var(--color-foreground), 0.3);
+    font-size: 0.75rem;
+    margin: 0 0.25rem;
+    font-weight: 300;
+  }
+
+  @keyframes ticker-scroll {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(calc(-100% / 3));
+    }
+  }
+
+  @media screen and (min-width: 990px) {
+    .header__ticker-menu {
+      display: flex;
+    }
+  }
+
+  /* Thin Header - Shrink logo and icons */
+  .header__heading-logo-wrapper {
+    max-width: 100px;
+  }
+
+  .header__heading-logo {
+    max-height: 20px;
+    width: auto;
+    height: auto;
+  }
+
+  .header__icon {
+    height: 2rem !important;
+    width: 2rem !important;
+    min-height: 2rem;
+    min-width: 2rem;
+  }
+
+  .header__icon .icon {
+    height: 1.4rem !important;
+    width: 1.4rem !important;
+  }
+
+  .header__icon--cart {
+    margin-right: -0.6rem;
+  }
+
+  .header__heading-link {
+    padding: 0.2rem 0.4rem;
+  }
+
+  .header__heading-link .h2 {
+    font-size: 1rem;
+    line-height: 1.2;
+  }
+
+  .header__heading {
+    line-height: 1;
+  }
 </style>
 
 {%- style -%}
   .header {
-    padding: {{ section.settings.padding_top | times: 0.5 | round: 0 }}px 3rem {{ section.settings.padding_bottom | times: 0.5 | round: 0 }}px 3rem;
+    padding: 4px 3rem;
+    min-height: 32px;
   }
 
   .section-header {
@@ -101,12 +234,16 @@
     .section-header {
       margin-bottom: {{ section.settings.margin_bottom }}px;
     }
+    .header {
+      padding: 4px 3rem;
+      min-height: 32px;
+    }
   }
 
   @media screen and (min-width: 990px) {
     .header {
-      padding-top: {{ section.settings.padding_top }}px;
-      padding-bottom: {{ section.settings.padding_bottom }}px;
+      padding: 4px 5rem;
+      min-height: 32px;
     }
   }
 {%- endstyle -%}
@@ -199,11 +336,7 @@
 
     {%- liquid
       if section.settings.menu != blank
-        if section.settings.menu_type_desktop == 'dropdown'
-          render 'header-dropdown-menu'
-        elsif section.settings.menu_type_desktop != 'drawer'
-          render 'header-mega-menu'
-        endif
+        render 'header-ticker-menu'
       endif
     %}
 
@@ -455,6 +588,52 @@
   }
 
   customElements.define('sticky-header', StickyHeader);
+{% endjavascript %}
+
+{% javascript %}
+  // Ticker Menu Enhancement - Pause on Hover
+  class TickerMenu extends HTMLElement {
+    constructor() {
+      super();
+    }
+
+    connectedCallback() {
+      const tickerMenu = document.querySelector('.header__ticker-menu');
+      if (!tickerMenu) return;
+
+      const tickerTrack = tickerMenu.querySelector('.header__ticker-track');
+      if (!tickerTrack) return;
+
+      // Pause animation on hover
+      tickerMenu.addEventListener('mouseenter', () => {
+        tickerTrack.style.animationPlayState = 'paused';
+      });
+
+      tickerMenu.addEventListener('mouseleave', () => {
+        tickerTrack.style.animationPlayState = 'running';
+      });
+
+      // Respect reduced motion preference
+      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+      if (prefersReducedMotion.matches) {
+        tickerTrack.style.animation = 'none';
+      }
+    }
+  }
+
+  // Only define if not already defined
+  if (!customElements.get('ticker-menu')) {
+    customElements.define('ticker-menu', TickerMenu);
+  }
+
+  // Initialize ticker menu behavior
+  document.addEventListener('DOMContentLoaded', () => {
+    const tickerMenuContainer = document.querySelector('.header__ticker-menu');
+    if (tickerMenuContainer) {
+      const tickerElement = document.createElement('ticker-menu');
+      tickerMenuContainer.appendChild(tickerElement);
+    }
+  });
 {% endjavascript %}
 
 <script type="application/ld+json">
