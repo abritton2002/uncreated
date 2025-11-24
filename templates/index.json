@@ -9,71 +9,18 @@
  */
 {
   "sections": {
-    "uncreated_countdown_minimal": {
-      "type": "uncreated-countdown-minimal",
-      "settings": {
-        "heading": "Next Drop",
-        "drop_date": "2025-12-10 09:00",
-        "show_notify": false,
-        "notify_text": "Sign up to be notified when the drop goes live",
-        "background_color": "#f5f5f0",
-        "text_color": "#0a0a0a",
-        "padding_top": 20,
-        "padding_bottom": 10
-      }
-    },
     "image_banner_gx9tLR": {
       "type": "image-banner",
-      "blocks": {
-        "heading_ipUXKQ": {
-          "type": "heading",
-          "settings": {
-            "heading": "",
-            "heading_size": "h2"
-          }
-        },
-        "text_R4DXyK": {
-          "type": "text",
-          "settings": {
-            "text": "",
-            "text_style": "body"
-          }
-        },
-        "logo_zYe8JD": {
-          "type": "logo",
-          "settings": {
-            "logo": "shopify://shop_images/Uncreated_Curve_Logo_Black_-_1.png",
-            "logo_width": 290
-          }
-        },
-        "buttons_t9RT3R": {
-          "type": "buttons",
-          "settings": {
-            "button_label_1": "MERCH",
-            "button_link_1": "https://uncreated.shop/collections/all",
-            "button_style_secondary_1": false,
-            "button_label_2": "",
-            "button_link_2": "",
-            "button_style_secondary_2": false
-          }
-        }
-      },
-      "block_order": [
-        "heading_ipUXKQ",
-        "text_R4DXyK",
-        "logo_zYe8JD",
-        "buttons_t9RT3R"
-      ],
       "name": "t:sections.image-banner.presets.name",
       "settings": {
         "image": "shopify://shop_images/P1010353.jpg",
         "image_2": "shopify://shop_images/P1020133.jpg",
         "image_overlay_opacity": 0,
-        "image_height": "medium",
+        "image_height": "small",
         "desktop_content_position": "middle-center",
         "show_text_box": true,
         "desktop_content_alignment": "center",
-        "color_scheme": "background-2",
+        "color_scheme": "scheme-d7a06b82-adba-4a47-89d2-40011d49506f",
         "image_behavior": "none",
         "mobile_content_alignment": "center",
         "stack_images_on_mobile": true,
@@ -82,7 +29,6 @@
     }
   },
   "order": [
-    "uncreated_countdown_minimal",
     "image_banner_gx9tLR"
   ]
 }

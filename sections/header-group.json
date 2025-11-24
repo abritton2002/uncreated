@@ -33,8 +33,9 @@
         "51aa09ef-3e47-426f-84fb-63e88f8e1daa",
         "dad0b6d5-5141-4060-8ca6-0685e64561cd"
       ],
+      "custom_css": [],
       "settings": {
-        "color_scheme": "accent-1",
+        "color_scheme": "scheme-7e10e150-fdeb-413a-9764-17c10ab1471c",
         "show_line_separator": true,
         "show_social": false,
         "auto_rotate": true,
@@ -51,8 +52,8 @@
         "menu_type_desktop": "mega",
         "sticky_header_type": "on-scroll-up",
         "show_line_separator": false,
-        "color_scheme": "scheme-19647b9d-2ad0-4d1f-9dca-6daa650be7ff",
-        "menu_color_scheme": "scheme-1eba3db7-a9b5-41bf-bf2e-e15ce98745b9",
+        "color_scheme": "scheme-815535eb-a840-4ad5-a6b9-8b362109fd6b",
+        "menu_color_scheme": "accent-2",
         "enable_country_selector": true,
         "enable_language_selector": true,
         "mobile_logo_position": "center",
