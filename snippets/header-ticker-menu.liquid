@@ -1,6 +1,6 @@
 {% comment %}
-  Renders a continuous scrolling ticker (sports bar style).
-  Infinitely scrolls content from right to left.
+  Renders a continuous scrolling ticker for navigation.
+  Infinitely scrolls menu items from right to left.
 
   Usage:
   {% render 'header-ticker-menu' %}
@@ -12,12 +12,6 @@
       {%- comment -%} Repeat content 8 times for seamless infinite scroll {%- endcomment -%}
       {%- for i in (1..8) -%}
         <div class="header__ticker-content"{% if i > 1 %} aria-hidden="true"{% endif %}>
-          {%- comment -%} Brand announcements {%- endcomment -%}
-          <span class="header__ticker-item header__ticker-item--announcement">DEAR UNCREATED ONES</span>
-          <span class="header__ticker-separator" aria-hidden="true">/</span>
-          <span class="header__ticker-item header__ticker-item--announcement">WE ARE COMING BACK</span>
-          <span class="header__ticker-separator" aria-hidden="true">/</span>
-
           {%- comment -%} Navigation links {%- endcomment -%}
           {%- for link in section.settings.menu.links -%}
             <a
