@@ -1,9 +1,19 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "hero": {
       "type": "uncreated-hero-minimal",
       "settings": {
-        "hero_height": 100,
+        "background_image": "shopify://shop_images/P1010353.jpg",
+        "hero_height": 90,
         "background_color": "#ffffff",
         "text_color": "#000000",
         "show_overlay_text": true,
@@ -11,6 +21,7 @@
         "subtitle": "Created by the Uncreated One",
         "show_cta": true,
         "cta_text": "ENTER DROP",
+        "cta_link": "",
         "show_scroll_indicator": true
       }
     },
@@ -20,6 +31,8 @@
         "heading": "DROP",
         "drop_date": "2025-12-10 18:00",
         "show_cta": false,
+        "cta_text": "NOTIFY ME",
+        "cta_link": "",
         "background_color": "#000000",
         "text_color": "#ffffff"
       }
@@ -55,6 +68,9 @@
     "footer": {
       "type": "uncreated-footer-minimal",
       "settings": {
+        "show_copyright": true,
+        "copyright_text": "Uncreated",
+        "tagline": "Created by the Uncreated One",
         "show_divider": true,
         "background_color": "#ffffff",
         "text_color": "#000000",
