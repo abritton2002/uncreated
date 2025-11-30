@@ -1,11 +1,7 @@
-{{ 'uncreated-minimal.css' | asset_url | stylesheet_tag }}
-
 {% style %}
   #uncreated-countdown-{{ section.id }} {
     background-color: {{ section.settings.background_color }};
     color: {{ section.settings.text_color }};
-    padding-top: {{ section.settings.padding_top }}px;
-    padding-bottom: {{ section.settings.padding_bottom }}px;
   }
 {% endstyle %}
 
@@ -15,43 +11,41 @@
   data-section-id="{{ section.id }}"
   data-section-type="uncreated-countdown"
 >
-  <div class="countdown__container page-width">
+  <div class="countdown__container">
     {%- if section.settings.heading != blank -%}
-      <h2 class="countdown__heading">
-        {{ section.settings.heading }}
-      </h2>
+      <h2 class="countdown__heading">{{ section.settings.heading }}</h2>
     {%- endif -%}
 
     {%- if section.settings.drop_date != blank -%}
-      <div
-        class="countdown__timer"
-        data-drop-date="{{ section.settings.drop_date }}"
-      >
+      <div class="countdown__timer" data-drop-date="{{ section.settings.drop_date }}">
         <div class="countdown__unit">
           <span class="countdown__value" data-days>00</span>
-          <span class="countdown__label">Days</span>
+          <span class="countdown__label">D</span>
         </div>
+        <span class="countdown__colon">:</span>
         <div class="countdown__unit">
           <span class="countdown__value" data-hours>00</span>
-          <span class="countdown__label">Hours</span>
+          <span class="countdown__label">H</span>
         </div>
+        <span class="countdown__colon">:</span>
         <div class="countdown__unit">
           <span class="countdown__value" data-minutes>00</span>
-          <span class="countdown__label">Minutes</span>
+          <span class="countdown__label">M</span>
         </div>
+        <span class="countdown__colon">:</span>
         <div class="countdown__unit">
           <span class="countdown__value" data-seconds>00</span>
-          <span class="countdown__label">Seconds</span>
+          <span class="countdown__label">S</span>
         </div>
       </div>
     {%- else -%}
-      <p class="countdown__placeholder">Please set a drop date in the theme settings.</p>
+      <p class="countdown__placeholder">Set drop date in theme settings</p>
     {%- endif -%}
 
-    {%- if section.settings.show_notify -%}
-      <div class="countdown__notify">
-        <p class="countdown__notify-text">{{ section.settings.notify_text }}</p>
-      </div>
+    {%- if section.settings.show_cta and section.settings.cta_text != blank -%}
+      <a href="{{ section.settings.cta_link | default: '#' }}" class="countdown__cta">
+        {{ section.settings.cta_text }}
+      </a>
     {%- endif -%}
   </div>
 </section>
@@ -111,7 +105,7 @@
       "type": "text",
       "id": "heading",
       "label": "Heading",
-      "default": "Next Drop"
+      "default": "DROP"
     },
     {
       "type": "text",
@@ -121,48 +115,41 @@
       "default": "2025-12-31 18:00"
     },
     {
+      "type": "header",
+      "content": "Call to Action"
+    },
+    {
       "type": "checkbox",
-      "id": "show_notify",
-      "label": "Show Notify Text",
+      "id": "show_cta",
+      "label": "Show CTA Button",
       "default": false
     },
     {
       "type": "text",
-      "id": "notify_text",
-      "label": "Notify Text",
-      "default": "Sign up to be notified when the drop goes live"
+      "id": "cta_text",
+      "label": "CTA Text",
+      "default": "NOTIFY ME"
+    },
+    {
+      "type": "url",
+      "id": "cta_link",
+      "label": "CTA Link"
+    },
+    {
+      "type": "header",
+      "content": "Colors"
     },
     {
       "type": "color",
       "id": "background_color",
       "label": "Background Color",
-      "default": "#f5f5f0"
+      "default": "#000000"
     },
     {
       "type": "color",
       "id": "text_color",
       "label": "Text Color",
-      "default": "#0a0a0a"
-    },
-    {
-      "type": "range",
-      "id": "padding_top",
-      "min": 0,
-      "max": 200,
-      "step": 10,
-      "unit": "px",
-      "label": "Top Padding",
-      "default": 80
-    },
-    {
-      "type": "range",
-      "id": "padding_bottom",
-      "min": 0,
-      "max": 200,
-      "step": 10,
-      "unit": "px",
-      "label": "Bottom Padding",
-      "default": 80
+      "default": "#ffffff"
     }
   ],
   "presets": [

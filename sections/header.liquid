@@ -117,20 +117,18 @@
   .header__ticker-track {
     display: inline-flex;
     white-space: nowrap;
-    animation: ticker-scroll 40s linear infinite;
+    animation: ticker-scroll 30s linear infinite;
     will-change: transform;
   }
 
   @media (prefers-reduced-motion: reduce) {
     .header__ticker-track {
       animation: none;
+      justify-content: center;
     }
     .header__ticker-container {
       mask-image: none;
       -webkit-mask-image: none;
-    }
-    .header__ticker-track {
-      justify-content: center;
     }
   }
 
@@ -138,37 +136,37 @@
     display: inline-flex;
     align-items: center;
     flex-shrink: 0;
-    gap: 1rem;
-    padding: 0 2rem;
+    gap: 0;
+    padding: 0;
   }
 
   .header__ticker-item {
     display: inline-block;
-    padding: 0 0.5rem;
-    font-size: 0.8125rem;
+    padding: 0 1.5rem;
+    font-size: 0.8rem;
     text-decoration: none;
-    color: rgba(var(--color-foreground), 0.75);
-    transition: color 0.2s ease;
     white-space: nowrap;
-    font-weight: 500;
     text-transform: uppercase;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.1em;
+    transition: color 0.15s ease;
+  }
+
+  .header__ticker-item--brand {
+    font-weight: 700;
   }
 
   .header__ticker-item:hover {
-    color: rgb(var(--color-foreground));
+    opacity: 0.7;
   }
 
   .header__ticker-item--active {
-    color: rgb(var(--color-foreground));
     font-weight: 700;
   }
 
   .header__ticker-separator {
-    color: rgba(var(--color-foreground), 0.3);
-    font-size: 0.75rem;
-    margin: 0 0.25rem;
-    font-weight: 300;
+    font-size: 0.7rem;
+    margin: 0;
+    opacity: 0.4;
   }
 
   @keyframes ticker-scroll {
@@ -176,25 +174,16 @@
       transform: translateX(0);
     }
     100% {
-      transform: translateX(calc(-100% / 3));
+      transform: translateX(calc(-100% / 6));
     }
   }
 
-  /* Always show ticker menu on desktop */
-  @media screen and (min-width: 990px) {
-    .header__ticker-wrapper {
-      display: block;
-    }
-    .header__ticker-menu {
-      display: flex !important;
-    }
+  /* Show ticker on all screen sizes */
+  .header__ticker-wrapper {
+    display: block !important;
   }
-  
-  /* Hide on mobile - use drawer menu instead */
-  @media screen and (max-width: 989px) {
-    .header__ticker-wrapper {
-      display: none !important;
-    }
+  .header__ticker-menu {
+    display: flex !important;
   }
 
   /* Thin Header - Shrink logo and icons */
