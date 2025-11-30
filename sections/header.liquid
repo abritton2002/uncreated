@@ -188,13 +188,13 @@
 
   /* Header logo sizing */
   .header__heading-logo-wrapper {
-    max-width: 160px;
+    max-width: 300px !important;
   }
 
   .header__heading-logo {
-    max-height: 40px;
-    width: auto;
-    height: auto;
+    max-height: 80px !important;
+    width: auto !important;
+    height: auto !important;
     object-fit: contain;
   }
 
@@ -230,13 +230,13 @@
 
 {%- style -%}
   .header {
-    padding: 0.8rem 2rem !important;
-    min-height: 50px !important;
+    padding: 1rem 1.5rem !important;
+    min-height: 70px !important;
     max-height: none !important;
   }
 
   .section-header {
-    position: sticky; /* This is for fixing a Safari z-index issue. PR #2147 */
+    position: sticky;
     margin-bottom: {{ section.settings.margin_bottom | times: 0.75 | round: 0 }}px;
   }
 
@@ -245,16 +245,16 @@
       margin-bottom: {{ section.settings.margin_bottom }}px;
     }
     .header {
-      padding: 0.8rem 3rem !important;
-      min-height: 50px !important;
+      padding: 1rem 3rem !important;
+      min-height: 80px !important;
       max-height: none !important;
     }
   }
 
   @media screen and (min-width: 990px) {
     .header {
-      padding: 0.8rem 4rem !important;
-      min-height: 50px !important;
+      padding: 1rem 4rem !important;
+      min-height: 90px !important;
       max-height: none !important;
     }
   }
