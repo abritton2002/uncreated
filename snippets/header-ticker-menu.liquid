@@ -1,6 +1,6 @@
 {% comment %}
-  Renders a continuous scrolling ticker menu (sports bar style).
-  Infinitely scrolls menu items from right to left.
+  Renders a continuous scrolling ticker (sports bar style).
+  Infinitely scrolls content from right to left.
 
   Usage:
   {% render 'header-ticker-menu' %}
@@ -9,9 +9,16 @@
 <nav class="header__ticker-menu" role="navigation" aria-label="Main navigation">
   <div class="header__ticker-container">
     <div class="header__ticker-track">
-      {%- comment -%} Repeat content 6 times for seamless infinite scroll {%- endcomment -%}
-      {%- for i in (1..6) -%}
+      {%- comment -%} Repeat content 8 times for seamless infinite scroll {%- endcomment -%}
+      {%- for i in (1..8) -%}
         <div class="header__ticker-content"{% if i > 1 %} aria-hidden="true"{% endif %}>
+          {%- comment -%} Brand announcements {%- endcomment -%}
+          <span class="header__ticker-item header__ticker-item--announcement">DEAR UNCREATED ONES</span>
+          <span class="header__ticker-separator" aria-hidden="true">/</span>
+          <span class="header__ticker-item header__ticker-item--announcement">WE ARE COMING BACK</span>
+          <span class="header__ticker-separator" aria-hidden="true">/</span>
+
+          {%- comment -%} Navigation links {%- endcomment -%}
           {%- for link in section.settings.menu.links -%}
             <a
               href="{{ link.url }}"
@@ -22,7 +29,8 @@
             </a>
             <span class="header__ticker-separator" aria-hidden="true">/</span>
           {%- endfor -%}
-          {%- comment -%} Add brand message in the ticker {%- endcomment -%}
+
+          {%- comment -%} Brand name {%- endcomment -%}
           <span class="header__ticker-item header__ticker-item--brand">UNCREATED</span>
           <span class="header__ticker-separator" aria-hidden="true">/</span>
         </div>
@@ -30,22 +38,3 @@
     </div>
   </div>
 </nav>
-
-<script>
-  // Pause ticker on hover, resume on mouseout
-  document.addEventListener('DOMContentLoaded', function() {
-    const ticker = document.querySelector('.header__ticker-track');
-    if (!ticker) return;
-
-    const container = ticker.closest('.header__ticker-menu');
-    if (!container) return;
-
-    container.addEventListener('mouseenter', function() {
-      ticker.style.animationPlayState = 'paused';
-    });
-
-    container.addEventListener('mouseleave', function() {
-      ticker.style.animationPlayState = 'running';
-    });
-  });
-</script>

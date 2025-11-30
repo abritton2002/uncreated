@@ -1,49 +1,7 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin theme editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */
 {
   "name": "t:sections.header.name",
   "type": "header",
   "sections": {
-    "0f10f80f-aa1c-47d6-9769-3eccfd82ece4": {
-      "type": "announcement-bar",
-      "blocks": {
-        "51aa09ef-3e47-426f-84fb-63e88f8e1daa": {
-          "type": "announcement",
-          "settings": {
-            "text": "Dear Uncreated Ones",
-            "link": ""
-          }
-        },
-        "dad0b6d5-5141-4060-8ca6-0685e64561cd": {
-          "type": "announcement",
-          "settings": {
-            "text": "we are coming back¡",
-            "link": ""
-          }
-        }
-      },
-      "block_order": [
-        "51aa09ef-3e47-426f-84fb-63e88f8e1daa",
-        "dad0b6d5-5141-4060-8ca6-0685e64561cd"
-      ],
-      "custom_css": [],
-      "settings": {
-        "color_scheme": "scheme-7e10e150-fdeb-413a-9764-17c10ab1471c",
-        "show_line_separator": true,
-        "show_social": false,
-        "auto_rotate": true,
-        "change_slides_speed": 3,
-        "enable_country_selector": false,
-        "enable_language_selector": false
-      }
-    },
     "header": {
       "type": "header",
       "settings": {
@@ -54,8 +12,8 @@
         "show_line_separator": false,
         "color_scheme": "scheme-815535eb-a840-4ad5-a6b9-8b362109fd6b",
         "menu_color_scheme": "accent-2",
-        "enable_country_selector": true,
-        "enable_language_selector": true,
+        "enable_country_selector": false,
+        "enable_language_selector": false,
         "mobile_logo_position": "center",
         "margin_bottom": 0,
         "padding_top": 0,
@@ -64,7 +22,6 @@
     }
   },
   "order": [
-    "0f10f80f-aa1c-47d6-9769-3eccfd82ece4",
     "header"
   ]
 }
